@@ -25,9 +25,6 @@ import 'rxjs/add/operator/debounceTime';
 export class HeroSearchComponent implements OnInit {
 
   private searchTerms = new Subject<string>();
-  private heroSearchService: HeroSearchService;
-  private router: Router;
-
   heroes: Observable<Hero[]>;
 
   constructor(private heroSearchService: HeroSearchService, private router: Router) {}
