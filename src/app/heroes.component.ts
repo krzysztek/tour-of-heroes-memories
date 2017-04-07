@@ -4,6 +4,7 @@ import { Hero } from './hero';
 import { HeroService } from './hero.service';
 import { Router } from '@angular/router';
 import { HeroSearchService } from './hero-search.service';
+import { MessageService } from './message.service'
 
 @Component({
   providers: [HeroService, HeroSearchService],
@@ -18,7 +19,11 @@ export class HeroesComponent implements OnInit {
   private heroes: Hero[] = [];
   selectedHero: Hero;
 
-  constructor(private heroService: HeroService, private router: Router) { }
+  constructor(
+    private heroService: HeroService,
+    private router: Router,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit(): void {
     this.getHeroes();
@@ -50,11 +55,15 @@ export class HeroesComponent implements OnInit {
   }
 
   delete(hero: Hero): void {
+    this.messageService.sendMessage('Hero has been deleted');
+
     this.heroService
       .delete(hero.id)
       .then(() => {
         this.heroes = this.heroes.filter(h => h !== hero);
-        if (this.selectedHero === hero) { this.selectedHero = null; }
+        if (this.selectedHero === hero) {
+          this.selectedHero = null;
+        }
       });
   }
 }
