@@ -4,7 +4,7 @@ import { Hero } from './hero';
 import { HeroService } from './hero.service';
 import { Router } from '@angular/router';
 import { HeroSearchService } from './hero-search.service';
-import { MessageService } from './message.service'
+import { MessageService } from './message.service';
 
 @Component({
   providers: [HeroService, HeroSearchService],
@@ -22,7 +22,7 @@ export class HeroesComponent implements OnInit {
   constructor(
     private heroService: HeroService,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
   ) { }
 
   ngOnInit(): void {
@@ -55,7 +55,8 @@ export class HeroesComponent implements OnInit {
   }
 
   delete(hero: Hero): void {
-    this.messageService.sendMessage('Hero has been deleted');
+
+    this.messageService.sendMessage('Hero ' + hero.name + ' has been deleted');
 
     this.heroService
       .delete(hero.id)

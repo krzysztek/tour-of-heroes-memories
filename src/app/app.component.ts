@@ -17,7 +17,7 @@ import { MessageService } from './message.service';
 export class AppComponent implements OnDestroy {
 
   title = 'Tour of Heroes';
-  message: any = "Default Alert!";
+  message: any = 'Default Alert!';
   subscription: Subscription;
 
   constructor(private messageService: MessageService) {
